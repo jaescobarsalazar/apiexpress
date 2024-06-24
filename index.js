@@ -17,7 +17,9 @@ const pool = new Pool({
 
 app.get('/', async (req, res) => {
     try {
+
         const client = await pool.connect();
+        console.log("Hola!")
         const result = await client.query('SELECT NOW()');
         res.send(`Current Time: ${result.rows[0].now}`);
         client.release();
